@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LoL Recommender</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <p class="eyebrow">League of Legends</p>
+    <h1>Champion Recommender</h1>
+    <p class="subtitle">Win-probability builds by rank &amp; role</p>
+  </header>
+
+  <div class="search-wrap">
+    <span class="search-icon">⌕</span>
+    <input type="text" id="search" placeholder="Search champion..." autocomplete="off" />
+  </div>
+
+  <p class="section-label">Select Champion</p>
+  <div id="champion-grid"></div>
+
+  <div id="config-panel">
+    <div class="champion-hero">
+      <img id="hero-portrait" src="" alt="" />
+      <div>
+        <p class="hero-name" id="hero-name"></p>
+        <p class="hero-sub">Optionally filter by role and rank</p>
+      </div>
+    </div>
+
+    <div class="selectors">
+      <div class="selector-group">
+        <label>Role</label>
+        <div class="pill-group" id="role-group">
+          <button class="pill" data-val="TOP">Top</button>
+          <button class="pill" data-val="JUNGLE">Jungle</button>
+          <button class="pill" data-val="MIDDLE">Mid</button>
+          <button class="pill" data-val="BOTTOM">Bot</button>
+          <button class="pill" data-val="UTILITY">Support</button>
+        </div>
+      </div>
+      <div class="selector-group">
+        <label>Rank</label>
+        <div class="pill-group" id="rank-group">
+          <button class="pill" data-val="IRON">Iron</button>
+          <button class="pill" data-val="BRONZE">Bronze</button>
+          <button class="pill" data-val="SILVER">Silver</button>
+          <button class="pill" data-val="GOLD">Gold</button>
+          <button class="pill" data-val="PLATINUM">Plat</button>
+          <button class="pill" data-val="EMERALD">Emerald</button>
+          <button class="pill" data-val="DIAMOND">Diamond</button>
+        </div>
+      </div>
+    </div>
+
+    <button id="get-btn" disabled>Get Recommendations</button>
+  </div>
+
+  <div id="results">
+    <p class="section-label">Results</p>
+    <div id="results-inner"></div>
+  </div>
+
+</div>
+<script src="conversion.js"></script>
+<script src="scripts.js"></script>
+</body>
+</html>
