@@ -333,8 +333,8 @@ async function fetchAndRender() {
 
 document.getElementById('get-btn').addEventListener('click', () => {
   selectedBuild = {};
-  document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'start' });
   fetchAndRender();
+  document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'start' });
 });
 
 // ── Handle clicking a recommendation row ──────────────────────────────────────

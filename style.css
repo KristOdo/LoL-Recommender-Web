@@ -286,9 +286,38 @@ h1 {
 #vs-grid::-webkit-scrollbar-thumb { background: var(--border-hi); }
 .champ-card-sm .champ-name { font-size: 9px; }
 
+/* ── Footer ── */
+footer {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 40px;
+  border-top: 1px solid var(--border); margin-top: 64px; padding-top: 36px;
+  padding-bottom: 40px;
+}
+.footer-heading {
+  font-family: var(--font-head); font-size: 11px; letter-spacing: 4px;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 14px;
+}
+.footer-disclaimer, .footer-privacy {
+  font-size: 12px; line-height: 1.7; color: var(--text-muted); letter-spacing: 0.3px;
+}
+.footer-privacy { margin-top: 10px; }
+.footer-authors { display: flex; gap: 32px; }
+.footer-author { display: flex; flex-direction: column; gap: 8px; }
+.footer-author-name {
+  font-size: 14px; font-weight: 600; color: var(--gold-light); letter-spacing: 1px;
+}
+.footer-author-icons { display: flex; gap: 12px; }
+.footer-icon-link {
+  color: var(--text-muted); transition: color 0.15s;
+  display: flex; align-items: center;
+}
+.footer-icon-link:hover { color: var(--gold); }
+.footer-icon-link svg { width: 18px; height: 18px; }
+
 /* ── Responsive ── */
 @media (max-width: 600px) {
   .selectors { grid-template-columns: 1fr; }
   .rec-grid  { grid-template-columns: 1fr; }
   .wr-number { font-size: 52px; }
+  footer { grid-template-columns: 1fr; gap: 32px; }
+  .footer-authors { flex-direction: column; gap: 20px; }
 }
