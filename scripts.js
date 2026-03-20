@@ -12,6 +12,7 @@ const CATEGORIES = [
   { key: 'item1',        label: 'First Item',      type: 'item' },
   { key: 'item2',        label: 'Second Item',     type: 'item' },
   { key: 'item3',        label: 'Third Item',      type: 'item' },
+  { key: 'item4',        label: 'Fourth+ Item',    type: 'item' },
 ];
 
 let allChampions  = [];
@@ -139,6 +140,7 @@ function renderVsGrid(champs) {
 
 function selectVs(el) {
   selected.vs = el.dataset.name;
+  selected.vsId = el.dataset.id;
   document.getElementById('vs-search').style.display    = 'none';
   document.getElementById('vs-selected-display').style.display = 'flex';
   document.getElementById('vs-selected-img').src        = `${DDragon}/img/champion/${el.dataset.id}.png`;
@@ -149,6 +151,7 @@ function selectVs(el) {
 
 function clearVs() {
   selected.vs = null;
+  selected.vsId = null;
   document.getElementById('vs-search').style.display    = 'block';
   document.getElementById('vs-search').value            = '';
   document.getElementById('vs-selected-display').style.display = 'none';
@@ -156,10 +159,11 @@ function clearVs() {
   renderVsGrid([]);
 }
 
-function selectVsFromRow(name) {
+function selectVsFromRow(name, id) {
   const champ = allChampions.find(c => c.name === name);
   if (!champ) return;
   selected.vs = name;
+  selected.vsId = id;
   document.getElementById('vs-search').style.display    = 'none';
   document.getElementById('vs-selected-display').style.display = 'flex';
   document.getElementById('vs-selected-img').src        = `${DDragon}/img/champion/${champ.id}.png`;
@@ -182,7 +186,7 @@ document.getElementById('vs-search').addEventListener('input', e => {
 document.getElementById('results-inner').addEventListener('click', e => {
   const row = e.target.closest('[data-vs-name]');
   if (!row) return;
-  selectVsFromRow(row.dataset.vsName);
+  selectVsFromRow(row.dataset.vsName, row.dataset.vsId);
 });
 
 function selectChampion(el) {
@@ -220,10 +224,10 @@ makePillGroup('rank-group', 'rank');
 // ── Build params ──────────────────────────────────────────────────────────────
 function buildParams(extra = {}, buildOverride = selectedBuild) {
   const raw = {
-    champ: selected.champion,
+    champ: selected.championId,
     role:  selected.role,
     tier:  selected.rank,
-    vs:    selected.vs,
+    vs:    selected.vsId,
     ...buildOverride,
     ...extra
   };
@@ -338,7 +342,8 @@ function renderMatchups(matchups, baseWr) {
     vs === 'games' ? b.games - a.games : b.winrate - a.winrate);
 
   const makeRow = (row, i) => {
-    const champ = allChampions.find(c => c.name === row.name);
+    const champ = allChampions.find(c => c.id === row.name);
+    row.name = champ ? champ.name : row.name;
     const img   = champ ? `<img src="${DDragon}/img/champion/${champ.id}.png" class="rec-icon" alt="" />` : '';
     const wr    = row.winrate * 100;
     const delta = wr - baseWr;
